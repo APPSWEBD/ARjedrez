@@ -29,7 +29,7 @@
     </a-marker>
 
     <!-- handle marker with hiro preset -->
-    <a-marker preset='hiro' smooth='true'>
+    <a-marker preset='hiro' id='hiro' smooth='true' emitevents='true' registerevents>
         <a-gltf-model src="#model2"></a-gltf-model>
      <!-- <a-box position='0 0.5 0' material='color: green;'></a-box>-->
     </a-marker>
@@ -61,14 +61,14 @@ AFRAME.registerComponent('registerevents', {
     marker.addEventListener('markerFound', function() {
       var markerId = marker.id;
       console.log('markerFound', markerId);
-      var audio = new Audio('R2D2.mp3');
-audio.play();
+    //  var audio = new Audio(markerId + '.mp3');
+//audio.play();
       // TODO: Add your own code here to react to the marker being found.
     });
     marker.addEventListener('markerLost', function() {
       var markerId = marker.id;
       console.log('markerLost', markerId);
-      var audio = new Audio('R2D3.mp3');
+      var audio = new Audio(markerId + '.mp3');
 audio.play();
       // TODO: Add your own code here to react to the marker being lost.
     });
