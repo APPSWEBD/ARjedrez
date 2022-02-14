@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
-<html><!-- include A-Frame obviously -->
+<html>
+<!-- include A-Frame obviously -->
 <script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
 
 <!-- include ar.js for A-Frame -->
@@ -10,38 +10,43 @@
 
 <script>
   THREEx.ArToolkitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/'
-  </script>
+</script>
+
 <body style='margin : 0px; overflow: hidden;'>
   <a-scene embedded arjs='sourceType: webcam; trackingMethod: best'>
 
 
-   
 
-     
+
+
     <!-- CHESS PIECES -->
 
     <a-assets>
-        <a-asset-item id="chess1" src="chess1.glb" crossOrigin="anonymous"></a-asset-item> 
-      </a-assets>
+      <a-asset-item id="chess1" src="chess1.glb" crossOrigin="anonymous"></a-asset-item>
+    </a-assets>
 
-    <a-marker id='chess1' a-marker type='pattern' preset='pattern' url='pattern-rune8.patt' smooth='true' emitevents='true' registerevents>
-       <!-- <a-box position='0 0.5 0' material='color: green;'>-->  <a-gltf-model src="#chess1" animation-mixer="loop:repeat"></a-gltf-model>
+    <a-marker id='chess1' a-marker type='pattern' preset='pattern' url='tester.patt' smooth='true' emitevents='true'
+      registerevents>
+      <!-- <a-box position='0 0.5 0' material='color: green;'>-->
+      <a-gltf-model src="#chess1" animation-mixer="loop:repeat"></a-gltf-model>
     </a-marker>
 
     <a-assets>
-        <a-asset-item id="chess2" src="chess2.glb" crossOrigin="anonymous"></a-asset-item> 
-      </a-assets>
-    <a-marker id='chess2' a-marker type='pattern' preset='pattern' url='pattern-rune2.patt' smooth='true' emitevents='true' registerevents>
-        <!-- <a-box position='0 0.5 0' material='color: green;'>-->  <a-gltf-model src="#chess2" animation-mixer="loop:repeat"></a-gltf-model>
-     </a-marker>
- 
+      <a-asset-item id="chess2" src="chess2.glb" crossOrigin="anonymous"></a-asset-item>
+    </a-assets>
+    <a-marker id='chess2' a-marker type='pattern' preset='pattern' url='pattern-rune2.patt' smooth='true'
+      emitevents='true' registerevents>
+      <!-- <a-box position='0 0.5 0' material='color: green;'>-->
+      <a-gltf-model src="#chess2" animation-mixer="loop:repeat"></a-gltf-model>
+    </a-marker>
 
 
- 
+
+
     <!-- handle marker with hiro preset -->
     <a-marker preset='hiro' smooth='true'>
-        <a-gltf-model src="#chess1"></a-gltf-model>
-     <!-- <a-box position='0 0.5 0' material='color: green;'></a-box>-->
+      <a-gltf-model src="#chess1"></a-gltf-model>
+      <!-- <a-box position='0 0.5 0' material='color: green;'></a-box>-->
     </a-marker>
 
 
@@ -53,35 +58,35 @@
   <audio>
     // AAC file (Chrome/Safari/IE9)
     <source src="R2D2.mp3" type="audio/mpeg" />
-   
-   </audio>
+
+  </audio>
 </body>
 
 
 <script>
   window.addEventListener('camera-init', (data) => {
-      console.log('camera-init', data);
+    console.log('camera-init', data);
   })
   window.addEventListener('camera-error', (error) => {
-      console.log('camera-error', error);
+    console.log('camera-error', error);
   })
-AFRAME.registerComponent('registerevents', {
-  init: function () {
-    var marker = this.el;
-    marker.addEventListener('markerFound', function() {
-      var markerId = marker.id;
-      console.log('markerFound', markerId);
-      var audio = new Audio(markerId + 'in.mp3');
-audio.play();
-      // TODO: Add your own code here to react to the marker being found.
-    });
-    marker.addEventListener('markerLost', function() {
-      var markerId = marker.id;
-      console.log('markerLost', markerId);
-      var audio = new Audio(markerId + 'out.mp3');
-audio.play();
-      // TODO: Add your own code here to react to the marker being lost.
-    });
-  }
-});
+  AFRAME.registerComponent('registerevents', {
+    init: function () {
+      var marker = this.el;
+      marker.addEventListener('markerFound', function () {
+        var markerId = marker.id;
+        console.log('markerFound', markerId);
+        var audio = new Audio(markerId + 'in.mp3');
+        audio.play();
+        // TODO: Add your own code here to react to the marker being found.
+      });
+      marker.addEventListener('markerLost', function () {
+        var markerId = marker.id;
+        console.log('markerLost', markerId);
+        var audio = new Audio(markerId + 'out.mp3');
+        audio.play();
+        // TODO: Add your own code here to react to the marker being lost.
+      });
+    }
+  });
 </script>
